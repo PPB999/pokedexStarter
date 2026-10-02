@@ -1,0 +1,101 @@
+import { generationList, typesList, sortList } from "../utils/optionList";
+import { useSearchForm } from "./SearchForm.hook";
+
+const SearchForm = () => {
+  const { fieldKeyword, fieldGeneration, fieldSort, fieldType } =
+    useSearchForm();
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px] mt-[40px] justify-center">
+      <div>
+        <label
+          htmlFor="generation"
+          className="block mb-2.5 text-mb font-medium text-white"
+        >
+          Search
+        </label>
+        <input
+          {...fieldKeyword}
+          id="generation"
+          className="p-2.5 bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#375EAA] focus:border-blue-500 block w-full"
+        ></input>
+      </div>
+      <div>
+        <label
+          htmlFor="generation"
+          className="block mb-2.5 text-mb font-medium text-white"
+        >
+          generation
+        </label>
+        <select
+          {...fieldGeneration}
+          id="generation"
+          className="capitalize p-2.5 bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#375EAA] focus:border-blue-500 block w-full"
+        >
+          {generationList.map((item, index) => {
+            return (
+              <option
+                className="capitalize"
+                key={`generation-key-${index}`}
+                value={index}
+              >
+                {item.name}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+        <label
+          htmlFor="type"
+          className="block mb-2.5 text-mb font-medium text-white"
+        >
+          Type
+        </label>
+        <select
+          {...fieldType}
+          id="type"
+          className="capitalize p-2.5 bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#375EAA] focus:border-blue-500 block w-full"
+        >
+          {typesList.map((item, index) => {
+            return (
+              <option
+                className="capitalize"
+                key={`type-key-${index}`}
+                value={item}
+              >
+                {item}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+        <label
+          htmlFor="sort"
+          className="block mb-2.5 text-mb font-medium text-white"
+        >
+          Sort By
+        </label>
+        <select
+          {...fieldSort}
+          id="sort"
+          className="capitalize p-2.5 bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#375EAA] focus:border-blue-500 block w-full"
+        >
+          {sortList.map((item, index) => {
+            return (
+              <option
+                className="capitalize"
+                key={`sort-key-${index}`}
+                value={item}
+              >
+                {item}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+    </div>
+  );
+};
+
+export default SearchForm;
